@@ -123,12 +123,12 @@ compile_commands.json: $(OBJS) | Makefile
 # Rules
 # -----
 
-$(BUILDDIR)/%.s.o : %.s | $(OBJS_ASSETS)
+$(BUILDDIR)/%.s.o : %.s | $(OBJS_ASSETS) libnile
 	@echo "  AS      $<"
 	@$(MKDIR) -p $(@D)
 	$(_V)$(CC) $(ASFLAGS) -MMD -MP -MJ $(patsubst %.o,%.cc.json,$@) -c -o $@ $<
 
-$(BUILDDIR)/%.c.o : %.c | $(OBJS_ASSETS)
+$(BUILDDIR)/%.c.o : %.c | $(OBJS_ASSETS) libnile
 	@echo "  CC      $<"
 	@$(MKDIR) -p $(@D)
 	$(_V)$(CC) $(CFLAGS) -MMD -MP -MJ $(patsubst %.o,%.cc.json,$@) -c -o $@ $<
